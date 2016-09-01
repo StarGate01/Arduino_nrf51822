@@ -86,9 +86,9 @@ smartwatch.upload.device_type=nRF51822_XXAA
 smartwatch.build.mcu=cortex-m0
 smartwatch.build.f_cpu=16000000
 smartwatch.build.usb_product="Arduino nRF51822"
-smartwatch.build.board=Generic_nRF51822
+smartwatch.build.board=Smartwatch
 smartwatch.build.core=RBL_nRF51822
-smartwatch.build.variant=Generic_nRF51822
+smartwatch.build.variant=Smartwatch
 smartwatch.build.extra_flags=-mthumb
 smartwatch.build.ldscript=linker_scripts/gcc/RBL_nRF51822.ld
 #use header in the sytem folder

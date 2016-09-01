@@ -38,11 +38,10 @@
 #define MISO D31
 #define MOSI D29
 
-#define SDA0  D2
-#define SCL0  D3
+#define SDA0  D14
+#define SCL0  D16
 
-#define SDA1  D14
-#define SCL1  D15
+
 
 #define A0 D19
 #define A1 D20
