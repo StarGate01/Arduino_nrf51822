@@ -33,47 +33,47 @@ nRF51822.build.mbed_api_include="-I{build.system.path}/mbed/api" "-I{build.syste
 
 
 #Upload method(s)
+#Blackmagic probe
 nRF51822.menu.upload_method.BMPMethod=BMP (Black Magic Probe)
 nRF51822.menu.upload_method.BMPMethod.upload.protocol=gdb_bmp
 nRF51822.menu.upload_method.BMPMethod.upload.tool=bmp_upload
 
-#Jlink. Note only version 5.02 is supported, as JLink commander operation was changed in version 5.1
+#Jlink. 
 nRF51822.menu.upload_method.JLinkMethod=JLink
 nRF51822.menu.upload_method.JLinkMethod.upload.protocol=jink
 nRF51822.menu.upload_method.JLinkMethod.upload.tool=jlink_upload
 
 #device type
-nRF51822.menu.device_type.type_nrf51822qfaa=nRF51822 QF AA
-nRF51822.menu.device_type.type_nrf51822qfaa.build.ldscript=linker_scripts/gcc/RBL_nRF51822.ld
-nRF51822.menu.device_type.type_nrf51822qfaa.upload.maximum_data_size=2560
-nRF51822.menu.device_type.type_nrf51822qfaa.upload.maximum_size=196608
-nRF51822.menu.device_type.type_nrf51822qfaa.upload.device_type=nRF51822_XXAA
+#nRF51822.menu.device_type.type_nrf51822qfaa=nRF51822 QF AA
+#nRF51822.menu.device_type.type_nrf51822qfaa.build.ldscript=linker_scripts/gcc/RBL_nRF51822.ld
+#nRF51822.menu.device_type.type_nrf51822qfaa.upload.maximum_data_size=2560
+#nRF51822.menu.device_type.type_nrf51822qfaa.upload.maximum_size=196608
+#nRF51822.menu.device_type.type_nrf51822qfaa.upload.device_type=nRF51822_XXAA
 
-nRF51822.menu.device_type.type_nrf51822qfab=nRF51822 QF AB
-nRF51822.menu.device_type.type_nrf51822qfab.build.ldscript=linker_scripts/gcc/RBL_nRF51822.ld
-nRF51822.menu.device_type.type_nrf51822qfab.upload.maximum_data_size=2560
-nRF51822.menu.device_type.type_nrf51822qfaa.upload.maximum_size=65536
-nRF51822.menu.device_type.type_nrf51822qfaa.upload.device_type=nRF51822_XXAB
+#nRF51822.menu.device_type.type_nrf51822qfab=nRF51822 QF AB
+#nRF51822.menu.device_type.type_nrf51822qfab.build.ldscript=linker_scripts/gcc/RBL_nRF51822.ld
+#nRF51822.menu.device_type.type_nrf51822qfab.upload.maximum_data_size=2560
+#nRF51822.menu.device_type.type_nrf51822qfaa.upload.maximum_size=65536
+#nRF51822.menu.device_type.type_nrf51822qfaa.upload.device_type=nRF51822_XXAB
 
-nRF51822.menu.device_type.type_nrf51822qfac=nRF51822 QF AC
-nRF51822.menu.device_type.type_nrf51822qfac.build.ldscript=linker_scripts/gcc/RBL_nRF51822.ld
-nRF51822.menu.device_type.type_nrf51822qfac.upload.maximum_data_size=18994
-nRF51822.menu.device_type.type_nrf51822qfac.upload.maximum_size=196608
-nRF51822.menu.device_type.type_nrf51822qfaa.upload.device_type=nRF51822_XXAC
+#nRF51822.menu.device_type.type_nrf51822qfac=nRF51822 QF AC
+#nRF51822.menu.device_type.type_nrf51822qfac.build.ldscript=linker_scripts/gcc/RBL_nRF51822.ld
+#nRF51822.menu.device_type.type_nrf51822qfac.upload.maximum_data_size=18994
+#nRF51822.menu.device_type.type_nrf51822qfac.upload.maximum_size=196608
+#nRF51822.menu.device_type.type_nrf51822qfaa.upload.device_type=nRF51822_XXAC
 
 
 #Memory size
-#nRF51822.menu.ram_size.size_16k=16k
-#nRF51822.menu.ram_size.size_16k.build.ldscript=linker_scripts/gcc/RBL_nRF51822.ld
-#nRF51822.menu.ram_size.size_16k.upload.maximum_data_size=2560
+nRF51822.menu.ram_size.size_16k=16k (QFAA)
+nRF51822.menu.ram_size.size_16k.build.ldscript=linker_scripts/nRF51822QFAA.ld
+nRF51822.menu.ram_size.size_16k.upload.maximum_data_size=2560
 
-#nRF51822.menu.ram_size.size_32k=32k
-#nRF51822.menu.ram_size.size_32k.build.ldscript=linker_scripts/gcc/RBL_nRF51822.ld
-#nRF51822.menu.ram_size.size_32k.upload.maximum_data_size=18994
+nRF51822.menu.ram_size.size_32k=32k (QFAC)
+nRF51822.menu.ram_size.size_32k.build.ldscript=linker_scripts/nRF51822QFAC.ld
+nRF51822.menu.ram_size.size_32k.upload.maximum_data_size=18994
 
 
 smartwatch.name=Smartwatch
-
 smartwatch.upload.protocol=avr109
 smartwatch.upload.maximum_size=196608
 smartwatch.upload.maximum_data_size=2560
@@ -82,7 +82,6 @@ smartwatch.upload.disable_flushing=true
 smartwatch.upload.use_1200bps_touch=true
 smartwatch.upload.wait_for_upload_port=false
 smartwatch.upload.device_type=nRF51822_XXAA
-
 smartwatch.build.mcu=cortex-m0
 smartwatch.build.f_cpu=16000000
 smartwatch.build.usb_product="Arduino nRF51822"
@@ -90,19 +89,99 @@ smartwatch.build.board=Smartwatch
 smartwatch.build.core=RBL_nRF51822
 smartwatch.build.variant=Smartwatch
 smartwatch.build.extra_flags=-mthumb
-smartwatch.build.ldscript=linker_scripts/gcc/RBL_nRF51822.ld
+smartwatch.build.ldscript=linker_scripts/nRF51822QFAA.ld
 #use header in the sytem folder
 smartwatch.build.ble_api_include="-I{build.system.path}/ble-master" "-I{build.system.path}/ble-master/ble/services" "-I{build.system.path}/ble-master/source" "-I{build.system.path}/ble-master/source/services"
 smartwatch.build.nRF51822_api_include="-I{build.system.path}/ble-nrf51822-master/source" "-I{build.system.path}/ble-nrf51822-master/source/btle" "-I{build.system.path}/ble-nrf51822-master/source/btle/custom" "-I{build.system.path}/ble-nrf51822-master/source/common" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/ble_radio_notification" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/ble_services/ble_dfu" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/common" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/device_manager" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/device_manager/config" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/peer_manager" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/device" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/ble_flash" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/delay" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/hal" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/pstorage" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/pstorage/config" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/bootloader_dfu" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/bootloader_dfu/hci_transport" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/crc16" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/experimental_section_vars" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/fds" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/fstorage" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/hci" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/scheduler" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/timer" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/util" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/softdevice/common/softdevice_handler" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/softdevice/s130/headers"
 smartwatch.build.mbed_api_include="-I{build.system.path}/mbed/api" "-I{build.system.path}/mbed/common" "-I{build.system.path}/mbed/hal" "-I{build.system.path}/mbed/targets/cmsis" "-I{build.system.path}/mbed/targets/cmsis/TARGET_NORDIC/TARGET_MCU_NRF51822/" "-I{build.system.path}/mbed/targets/hal/TARGET_NORDIC/TARGET_MCU_NRF51822" "-I{build.system.path}/mbed/targets/hal/TARGET_NORDIC/TARGET_MCU_NRF51822/TARGET_RBLAB_NRF51822"
 
-
 #Upload method(s)
+#Blackmagic probe
 smartwatch.menu.upload_method.BMPMethod=BMP (Black Magic Probe)
 smartwatch.menu.upload_method.BMPMethod.upload.protocol=gdb_bmp
 smartwatch.menu.upload_method.BMPMethod.upload.tool=bmp_upload
 
-#Jlink. Note only version 5.02 is supported, as JLink commander operation was changed in version 5.1
+#Jlink. 
 smartwatch.menu.upload_method.JLinkMethod=JLink
 smartwatch.menu.upload_method.JLinkMethod.upload.protocol=jink
 smartwatch.menu.upload_method.JLinkMethod.upload.tool=jlink_upload
+
+#Wellcore iBeacon
+wellcoreibeacon.name=Wellcore iBeacon
+wellcoreibeacon.upload.protocol=avr109
+wellcoreibeacon.upload.maximum_size=196608
+wellcoreibeacon.upload.maximum_data_size=2560
+wellcoreibeacon.upload.speed=115200
+wellcoreibeacon.upload.disable_flushing=true
+wellcoreibeacon.upload.use_1200bps_touch=true
+wellcoreibeacon.upload.wait_for_upload_port=false
+wellcoreibeacon.upload.device_type=nRF51822_XXAA
+
+wellcoreibeacon.build.mcu=cortex-m0
+wellcoreibeacon.build.f_cpu=16000000
+wellcoreibeacon.build.usb_product="Arduino nRF51822"
+wellcoreibeacon.build.board=Wellcore_iBeacon
+wellcoreibeacon.build.core=RBL_nRF51822
+wellcoreibeacon.build.variant=Wellcore_iBeacon
+wellcoreibeacon.build.extra_flags=-mthumb
+wellcoreibeacon.build.ldscript=linker_scripts/nRF51822QFAA.ld
+#use header in the sytem folder
+wellcoreibeacon.build.ble_api_include="-I{build.system.path}/ble-master" "-I{build.system.path}/ble-master/ble/services" "-I{build.system.path}/ble-master/source" "-I{build.system.path}/ble-master/source/services"
+wellcoreibeacon.build.nRF51822_api_include="-I{build.system.path}/ble-nrf51822-master/source" "-I{build.system.path}/ble-nrf51822-master/source/btle" "-I{build.system.path}/ble-nrf51822-master/source/btle/custom" "-I{build.system.path}/ble-nrf51822-master/source/common" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/ble_radio_notification" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/ble_services/ble_dfu" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/common" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/device_manager" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/device_manager/config" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/peer_manager" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/device" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/ble_flash" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/delay" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/hal" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/pstorage" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/pstorage/config" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/bootloader_dfu" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/bootloader_dfu/hci_transport" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/crc16" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/experimental_section_vars" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/fds" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/fstorage" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/hci" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/scheduler" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/timer" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/util" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/softdevice/common/softdevice_handler" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/softdevice/s130/headers"
+wellcoreibeacon.build.mbed_api_include="-I{build.system.path}/mbed/api" "-I{build.system.path}/mbed/common" "-I{build.system.path}/mbed/hal" "-I{build.system.path}/mbed/targets/cmsis" "-I{build.system.path}/mbed/targets/cmsis/TARGET_NORDIC/TARGET_MCU_NRF51822/" "-I{build.system.path}/mbed/targets/hal/TARGET_NORDIC/TARGET_MCU_NRF51822" "-I{build.system.path}/mbed/targets/hal/TARGET_NORDIC/TARGET_MCU_NRF51822/TARGET_RBLAB_NRF51822"
+
+#Upload method(s)
+#Blackmagic probe
+wellcoreibeacon.menu.upload_method.BMPMethod=BMP (Black Magic Probe)
+wellcoreibeacon.menu.upload_method.BMPMethod.upload.protocol=gdb_bmp
+wellcoreibeacon.menu.upload_method.BMPMethod.upload.tool=bmp_upload
+
+#Jlink. 
+wellcoreibeacon.menu.upload_method.JLinkMethod=JLink
+wellcoreibeacon.menu.upload_method.JLinkMethod.upload.protocol=jink
+wellcoreibeacon.menu.upload_method.JLinkMethod.upload.tool=jlink_upload
+
+
+#Waveshare BLE400
+waveshareble400.name=Waveshare BLE400
+waveshareble400.upload.protocol=avr109
+waveshareble400.upload.maximum_size=196608
+waveshareble400.upload.maximum_data_size=2560
+waveshareble400.upload.speed=115200
+waveshareble400.upload.disable_flushing=true
+waveshareble400.upload.use_1200bps_touch=true
+waveshareble400.upload.wait_for_upload_port=false
+waveshareble400.upload.device_type=nRF51822_XXAA
+
+waveshareble400.build.mcu=cortex-m0
+waveshareble400.build.f_cpu=16000000
+waveshareble400.build.usb_product="Waveshare_BLE400"
+waveshareble400.build.board=Waveshare_BLE400
+waveshareble400.build.core=RBL_nRF51822
+waveshareble400.build.variant=Waveshare_BLE400
+waveshareble400.build.extra_flags=-mthumb
+waveshareble400.build.ldscript=linker_scripts/nRF51822QFAA.ld
+#use header in the sytem folder
+waveshareble400.build.ble_api_include="-I{build.system.path}/ble-master" "-I{build.system.path}/ble-master/ble/services" "-I{build.system.path}/ble-master/source" "-I{build.system.path}/ble-master/source/services"
+waveshareble400.build.nRF51822_api_include="-I{build.system.path}/ble-nrf51822-master/source" "-I{build.system.path}/ble-nrf51822-master/source/btle" "-I{build.system.path}/ble-nrf51822-master/source/btle/custom" "-I{build.system.path}/ble-nrf51822-master/source/common" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/ble_radio_notification" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/ble_services/ble_dfu" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/common" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/device_manager" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/device_manager/config" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/ble/peer_manager" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/device" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/ble_flash" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/delay" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/hal" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/pstorage" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/drivers_nrf/pstorage/config" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/bootloader_dfu" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/bootloader_dfu/hci_transport" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/crc16" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/experimental_section_vars" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/fds" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/fstorage" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/hci" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/scheduler" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/timer" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/libraries/util" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/softdevice/common/softdevice_handler" "-I{build.system.path}/ble-nrf51822-master/source/nordic_sdk/components/softdevice/s130/headers"
+waveshareble400.build.mbed_api_include="-I{build.system.path}/mbed/api" "-I{build.system.path}/mbed/common" "-I{build.system.path}/mbed/hal" "-I{build.system.path}/mbed/targets/cmsis" "-I{build.system.path}/mbed/targets/cmsis/TARGET_NORDIC/TARGET_MCU_NRF51822/" "-I{build.system.path}/mbed/targets/hal/TARGET_NORDIC/TARGET_MCU_NRF51822" "-I{build.system.path}/mbed/targets/hal/TARGET_NORDIC/TARGET_MCU_NRF51822/TARGET_RBLAB_NRF51822"
+
+#Memory size
+waveshareble400.menu.ram_size.size_16k=16k
+waveshareble400.menu.ram_size.size_16k.build.ldscript=linker_scripts/nRF51822QFAA.ld
+waveshareble400.menu.ram_size.size_16k.upload.maximum_data_size=2560
+
+waveshareble400.menu.ram_size.size_32k=32k
+waveshareble400.menu.ram_size.size_32k.build.ldscript=linker_scripts/nRF51822QFAC.ld
+waveshareble400.menu.ram_size.size_32k.upload.maximum_data_size=18994
+
+#Upload method(s)
+#Blackmagic probe
+waveshareble400.menu.upload_method.BMPMethod=BMP (Black Magic Probe)
+waveshareble400.menu.upload_method.BMPMethod.upload.protocol=gdb_bmp
+waveshareble400.menu.upload_method.BMPMethod.upload.tool=bmp_upload
+
+#Jlink
+waveshareble400.menu.upload_method.JLinkMethod=JLink
+waveshareble400.menu.upload_method.JLinkMethod.upload.protocol=jink
+waveshareble400.menu.upload_method.JLinkMethod.upload.tool=jlink_upload

@@ -31,16 +31,17 @@
 #define D23 23
 #define D24 24
 
-#define CS   D7
-#define SCK  D16
-#define MISO D17
-#define MOSI D18
+#define OLED_DC	 D0
+#define OLED_RST D1
+#define CS   D2
+#define SCK  D30
+#define MISO D31
+#define MOSI D29
 
-#define SDA0  D2
-#define SCL0  D3
+#define SDA0  D14
+#define SCL0  D16
 
-#define SDA1  D14
-#define SCL1  D15
+
 
 #define A0 D19
 #define A1 D20
@@ -49,13 +50,14 @@
 #define A4 D23
 #define A5 D24
 
-#define DEFAULT_RX_PIN D0 
-#define DERAULT_TX_PIN D1
+#define DEFAULT_RX_PIN 9 
+#define DEFAULT_TX_PIN 8
 
 #define TWI_SDA SDA1
 #define TWI_SCL SCL1
 
-#define LED D13
+#define BUTTON D3
+#define VIBRATE D7
 
 #endif
 

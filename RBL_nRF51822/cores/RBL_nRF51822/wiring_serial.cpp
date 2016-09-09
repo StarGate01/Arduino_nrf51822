@@ -56,7 +56,7 @@ void UARTClass::begin(const uint32_t BaudRate, uint32_t rx_pin, uint32_t tx_pin)
 
 void UARTClass::begin(const uint32_t BaudRate )
 {	
-	begin(BaudRate, DEFAULT_RX_PIN, DERAULT_TX_PIN);
+	begin(BaudRate, DEFAULT_RX_PIN, DEFAULT_TX_PIN);
 }
 
 void UARTClass::end(void)

@@ -37,17 +37,23 @@
 #define D29 29
 #define D30 30
 
-#define CS   D7
-#define SCK  D16
-#define MISO D17
-#define MOSI D18
+#define CS   30
+#define SPI_CS	30
+#define SCK  25
+#define MISO 23
+#define MOSI 24
 
-#define SDA0  D2
-#define SCL0  D3
 
-#define SDA1  D14
-#define SCL1  D15
+// Note I2C (Wire) has not been tested. Its unclear why there are two sets of pins defined for I2C which are used in different places in the mbed code
+// So I've set them both to the pins connected to the I2C header on the BLE400
+#define SDA0  0
+#define SCL0  1
 
+#define SDA1  0
+#define SCL1  1
+
+
+// Note. These "analog" pins are meaningless for the Waveshare BLE400
 #define A0 D19
 #define A1 D20
 #define A2 D21
@@ -58,10 +64,23 @@
 #define DEFAULT_RX_PIN 11 
 #define DEFAULT_TX_PIN 9
 
+#define SERIAL1_RX_PIN 5 
+#define SERIAL1_TX_PIN 6
+#define SERIAL1_CTX_PIN 7 
+#define SERIAL1_RTS_PIN 8
+
 #define TWI_SDA SDA1
 #define TWI_SCL SCL1
 
-#define LED D13
+#define LED D18
+#define LED1 D18
+#define LED2 D19
+#define LED3 D20
+#define LED4 D21
+#define LED5 D22
+
+#define KEY1 16
+#define KEY2 17
 
 #endif
 

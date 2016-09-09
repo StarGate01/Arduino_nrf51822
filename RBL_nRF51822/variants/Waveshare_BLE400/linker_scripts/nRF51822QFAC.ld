@@ -3,7 +3,7 @@
 MEMORY
 {
   FLASH (rx) : ORIGIN = 0x0001C000, LENGTH = 0x24000
-  RAM (rwx) :  ORIGIN = 0x20002800, LENGTH = 0x1800
+  RAM (rwx) :  ORIGIN = 0x20002800, LENGTH = 0x5800
 }
 
 OUTPUT_FORMAT ("elf32-littlearm", "elf32-bigarm", "elf32-littlearm")
@@ -147,5 +147,5 @@ SECTIONS
 	PROVIDE(__stack = __StackTop);
 
 	/* Check if data + heap + stack exceeds RAM limit */
-	ASSERT(__StackLimit >= __HeapLimit, "region RAM overflowed with stack")
+	ASSERT(__StackLimit >= __HeapLimit, "region RAM overflowed with stack") 
 }

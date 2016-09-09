@@ -15,21 +15,23 @@
 #include <SPI_Master.h>
 
 void setup() {
+  Serial.begin(115200);
+  Serial.println("SPI Master example");
   // put your setup code here, to run once
-  pinMode(D7, OUTPUT);
-  digitalWrite(D7, HIGH);
+  pinMode(SPI_CS, OUTPUT);
+  digitalWrite(SPI_CS, HIGH);
   delay(500);
   SPI_Master.begin();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  digitalWrite(D7, LOW);
+  Serial.println("Sending SPI Data 0x53,0x00,0x00,0x00");
+  digitalWrite(SPI_CS, LOW);
   SPI_Master.transfer(0x53);
   SPI_Master.transfer(0x00);
   SPI_Master.transfer(0x00);
   SPI_Master.transfer(0x00);
-  digitalWrite(D7, HIGH);
+  digitalWrite(SPI_CS, HIGH);
   delay(1000);
 }
-
