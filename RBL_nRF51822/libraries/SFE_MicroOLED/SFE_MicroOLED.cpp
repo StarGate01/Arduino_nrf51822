@@ -243,14 +243,22 @@ void MicroOLED::contrast(uint8_t contrast) {
     Bulk move the screen buffer to the SSD1306 controller's memory so that images/graphics drawn on the screen buffer will be displayed on the OLED.
 */
 void MicroOLED::display(void) {
-    command(MEMORYMODE, 0, SETCOLUMNBOUNDS, LCDCOLUMNOFFSET, LCDCOLUMNOFFSET + LCDWIDTH - 1, SETPAGEBOUNDS, 0, (LCDHEIGHT / 8) - 1); // Set horizontal addressing mode, width and height
-    dcPin = 1;
+	command(SETCOLUMNBOUNDS,0,127);
+	command(SETPAGEBOUNDS,0,7);
     csPin = 0;
-    for (int i = 0; i < (LCDWIDTH * LCDHEIGHT / 8); i++) {
-        miol_spi.write(screenmemory[i]);
-    }
+	for (int b=0;b<4;b++) 
+	{
+		miol_spi.write(0xb0+b);
+		miol_spi.write(0x00);
+		miol_spi.write(0x12);
+		dcPin = 1;
+		for (int i = 0; i < 64; i++) 
+		{
+			miol_spi.write(screenmemory[i+64*b]);
+		}
+		dcPin = 0;
+	}
     csPin = 1;
-    command(MEMORYMODE, 2); // Restore to page addressing mode
 }
  
 /*
