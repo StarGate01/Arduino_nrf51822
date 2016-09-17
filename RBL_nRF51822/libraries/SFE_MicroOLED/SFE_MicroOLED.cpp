@@ -119,6 +119,12 @@ void MicroOLED::init(int spi_mode, int spi_freq)
  	command( SETPRECHARGE, 0xF1);
  	command( SETVCOMDESELECT, 0x40);
  	command( DISPLAYALLONRESUME);
+	
+	// the following 2 lines were taken from the espruino code, and they work but may be the wrong values
+	// They may not be needed at all
+	command(SETCOLUMNBOUNDS,0,127);// possibly should be 0,63
+	command(SETPAGEBOUNDS,0,7);// possibly should be 0,3 (only 4 pages used)
+	
  //	command( NORMALDISPLAY);
 
  	clear(ALL);						// Erase hardware memory inside the OLED controller to avoid random data in memory.
@@ -243,11 +249,11 @@ void MicroOLED::contrast(uint8_t contrast) {
     Bulk move the screen buffer to the SSD1306 controller's memory so that images/graphics drawn on the screen buffer will be displayed on the OLED.
 */
 void MicroOLED::display(void) {
-	command(SETCOLUMNBOUNDS,0,127);
-	command(SETPAGEBOUNDS,0,7);
+
     csPin = 0;
 	for (int b=0;b<4;b++) 
-	{
+	{	
+		dcPin = 0;
 		miol_spi.write(0xb0+b);
 		miol_spi.write(0x00);
 		miol_spi.write(0x12);
@@ -256,7 +262,6 @@ void MicroOLED::display(void) {
 		{
 			miol_spi.write(screenmemory[i+64*b]);
 		}
-		dcPin = 0;
 	}
     csPin = 1;
 }
