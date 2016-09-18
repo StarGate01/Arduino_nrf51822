@@ -128,20 +128,52 @@ void MicroOLED::init(int spi_mode, int spi_freq)
  //	command( NORMALDISPLAY);
  
  #endif
+
+//  Original Espruino commands
+//	uint8_t initCmds[] = { 0xAe,0xD5,0x80,0xA8,31,0xD3,0x0,0x40,0x8D,0x14,0x20,0x00,0xA1,0xC8,0xDA,0x12,0x81,0xCF,0xD9,0xF1,0xDb,0x40,0xA4,0xA6,0xAf};
  
-	uint8_t initCmds[] = { 0xAe,0xD5, 0x80, 0xA8, 31,0xD3,0x0,0x40,0x8D,0x14,0x20,0x01, 0xA1,0xC8,0xDA,0x12,0x81,0xCF,0xD9,0xF1,0xDb,0x40,0xA4,0xA6,0xAf };
+//  Latest Espruino commands
+	uint8_t initCmds[] = { 0xAe,0xD5,0x80,0xA8,31,0xD3,0x0,0x40,0x8D,0x14,0x20,0x01,0xA1,0xC8,0xDA,0x12,0x81,0xCF,0xD9,0xF1,0xDb,0x40,0xA4,0xA6,0xAf };
+
+// Init commands from the OLED Display datasheet
+	uint8_t initCmdsOLED_SPEC[] = {	0xAE,    /*display off*/        
+									0x00,    /*set lower column address*/        
+									0x12,    /*set higher column address*/ 
+									0x00,    /*set display start line*/ 
+									0xB0,    /*set page address*/ 
+									0x81,    /*contract control*/ 
+									0x4f,        /*128*/  
+									0xA1,    /*set segment remap*/ 
+									0xA6,    /*normal / reverse*/ 
+									0xA8,    /*multiplex ratio*/ 
+									0x1F,        /*duty  =  1/32*/  
+									0xC8,    /*Com scan direction*/ 
+									0xD3,    /*set display offset*/ 
+									0x00, 
+									0xD5,    /*set osc division*/ 
+									0x80,     
+									0xD9,    /*set pre-charge period*/ 
+									0x1f, 
+									0xDA,    /*set COM pins*/ 
+									0x12, 
+									0xdb,    /*set vcomh*/ 
+									0x40, 
+									0x8d,    /*set charge pump enable*/ 
+									0x10, 
+									0xAF    /*display ON*/   }; 
+
 	
-	command (initCmds,sizeof(initCmds));
-	
+	command (initCmdsOLED_SPEC,sizeof(initCmds));
+/*	
 	miol_spi.write(0x21);
 	miol_spi.write(0);
 	miol_spi.write(127);
 	miol_spi.write(0x22);
 	miol_spi.write(0);
 	miol_spi.write(7);	
-
- 	clear(ALL);						// Erase hardware memory inside the OLED controller to avoid random data in memory.
- 	command(DISPLAYON);
+*/
+ //	clear(ALL);						// Erase hardware memory inside the OLED controller to avoid random data in memory.
+ //	command(DISPLAYON);
 }
 
 /** \brief Send the display command byte(s)
