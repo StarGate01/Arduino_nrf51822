@@ -171,8 +171,10 @@ void MicroOLED::init(int spi_mode, int spi_freq)
 	miol_spi.write(0x22);
 	miol_spi.write(0);
 	miol_spi.write(7);	
+	
 */
- //	clear(ALL);						// Erase hardware memory inside the OLED controller to avoid random data in memory.
+	command(MEMORYMODE, 0);
+ 	clear(ALL);						// Erase hardware memory inside the OLED controller to avoid random data in memory.
  //	command(DISPLAYON);
 }
 
@@ -243,15 +245,24 @@ void MicroOLED::command(uint8_t cmds[],int length) {
     To clear all GDRAM inside the LCD controller, pass in the variable mode = ALL and to clear screen page buffer pass in the variable mode = PAGE.
 */
 void MicroOLED::clear(uint8_t mode) {
-    if (mode==ALL) {
-        command(MEMORYMODE, 0, SETCOLUMNBOUNDS, 0, LCDTOTALWIDTH - 1, SETPAGEBOUNDS, 0, LCDTOTALPAGES - 1); // Set horizontal addressing mode, width and height
-        dcPin = 1;
-        csPin = 0;
-        for (int i = 0; i < (LCDTOTALWIDTH * LCDTOTALPAGES); i++) {
-            miol_spi.write(0);
-        }
-        csPin = 1;
-        command(MEMORYMODE, 2); // Restore to page addressing mode
+    if (mode==ALL) 
+	{
+		csPin = 0;
+		dcPin = 0;
+		
+		for (int b=0;b<4;b++) 
+		{	
+			dcPin = 0;
+			miol_spi.write(0xb0+b);
+			miol_spi.write(0x00);
+			miol_spi.write(0x12);
+			dcPin = 1;
+			for (int i = 0; i < 64; i++) 
+			{
+				miol_spi.write(0);
+			}
+		}
+		csPin = 1;
     }
     else
     {
@@ -266,14 +277,23 @@ void MicroOLED::clear(uint8_t mode) {
 */
 void MicroOLED::clear(uint8_t mode, uint8_t c) {
     if (mode==ALL) {
-        command(MEMORYMODE, 0, SETCOLUMNBOUNDS, 0, LCDTOTALWIDTH - 1, SETPAGEBOUNDS, 0, LCDTOTALPAGES - 1); // Set horizontal addressing mode, width and height
-        dcPin = 1;
-        csPin = 0;
-        for (int i = 0; i < (LCDTOTALWIDTH * LCDTOTALPAGES); i++) {
-            miol_spi.write(c);
-        }
-        csPin = 1;
-        command(MEMORYMODE, 2); // Restore to page addressing mode
+		csPin = 0;
+		dcPin = 0;
+		
+		for (int b=0;b<4;b++) 
+		{	
+			dcPin = 0;
+			miol_spi.write(0xb0+b);
+			miol_spi.write(0x00);
+			miol_spi.write(0x12);
+			dcPin = 1;
+			for (int i = 0; i < 64; i++) 
+			{
+				miol_spi.write(c);
+			}
+		}
+		csPin = 1;
+
     }
     else
     {
