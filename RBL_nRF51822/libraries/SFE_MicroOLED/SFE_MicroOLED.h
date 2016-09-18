@@ -124,6 +124,7 @@ public:
 	void command(uint8_t c1, uint8_t c2);
 	void command(uint8_t c1, uint8_t c2, uint8_t c3);
 	void command(uint8_t c1, uint8_t c2, uint8_t c3, uint8_t c4, uint8_t c5, uint8_t c6, uint8_t c7, uint8_t c8);
+	void command(uint8_t cmds[],int length);	
 	void setColumnAddress(uint8_t add);
 	void setPageAddress(uint8_t add);
 

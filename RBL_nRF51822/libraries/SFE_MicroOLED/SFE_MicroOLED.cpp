@@ -104,7 +104,7 @@ void MicroOLED::init(int spi_mode, int spi_freq)
 	rstPin = 1;	// Set RST HIGH, bring out of reset
 	wait_ms(5); // wait 5ms
 
-
+#if GORANS_INIT
  	command( DISPLAYOFF);
  	command( SETDISPLAYCLOCKDIV,0x80); 
  	command( SETMULTIPLEX, 0x1F);
@@ -126,6 +126,19 @@ void MicroOLED::init(int spi_mode, int spi_freq)
 	command(SETPAGEBOUNDS,0,7);// possibly should be 0,3 (only 4 pages used)
 	
  //	command( NORMALDISPLAY);
+ 
+ #endif
+ 
+	uint8_t initCmds[] = { 0xAe,0xD5, 0x80, 0xA8, 31,0xD3,0x0,0x40,0x8D,0x14,0x20,0x01, 0xA1,0xC8,0xDA,0x12,0x81,0xCF,0xD9,0xF1,0xDb,0x40,0xA4,0xA6,0xAf };
+	
+	command (initCmds,sizeof(initCmds));
+	
+	miol_spi.write(0x21);
+	miol_spi.write(0);
+	miol_spi.write(127);
+	miol_spi.write(0x22);
+	miol_spi.write(0);
+	miol_spi.write(7);	
 
  	clear(ALL);						// Erase hardware memory inside the OLED controller to avoid random data in memory.
  	command(DISPLAYON);
@@ -180,6 +193,18 @@ void MicroOLED::command(uint8_t c1, uint8_t c2, uint8_t c3, uint8_t c4, uint8_t 
     csPin = 1;  // SS HIGH to end transfer
  
 }
+ 
+void MicroOLED::command(uint8_t cmds[],int length) {
+    
+    dcPin = 0;  // DC pin LOW for a command
+    csPin = 0;  // SS LOW to initialize transfer
+	for(int i=0;i<length;i++)
+	{
+		miol_spi.write(cmds[i]);
+	}
+    csPin = 1;  // SS HIGH to end transfer
+ 
+} 
  
 /** \brief Clear screen buffer or SSD1306's memory.
  
@@ -251,6 +276,10 @@ void MicroOLED::contrast(uint8_t contrast) {
 void MicroOLED::display(void) {
 
     csPin = 0;
+	dcPin = 0;
+	
+
+	
 	for (int b=0;b<4;b++) 
 	{	
 		dcPin = 0;
