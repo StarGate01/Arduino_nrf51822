@@ -50,8 +50,8 @@
 #define A4 D23
 #define A5 D24
 
-#define DEFAULT_RX_PIN 18 
-#define DEFAULT_TX_PIN 17
+#define DEFAULT_RX_PIN 17 
+#define DEFAULT_TX_PIN 18
 
 #define TWI_SDA SDA1
 #define TWI_SCL SCL1
