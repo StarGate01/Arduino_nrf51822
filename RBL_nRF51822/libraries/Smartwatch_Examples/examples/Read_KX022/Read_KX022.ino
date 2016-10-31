@@ -21,35 +21,7 @@ TwoWire Wire = TwoWire(NRF_TWI1);
 #define KX022_Accel_CNTL2_1       0x18
 #define KX022_Accel_CNTL2_2       0xC1  
 
-#define XOUT_L 0x06
-#define XOUT_H 0x07
-#define YOUT_L 0x08
-#define YOUT_H 0x09
-#define ZOUT_L 0x0A
-#define ZOUT_H 0x0B
-
-uint8_t        KX022_Content_ReadData[6];
-#define KX022_Addr_Accel_ReadData 0x06    
-
-float       KX022_Accel_X;
-float       KX022_Accel_Y;                               
-float       KX022_Accel_Z;
-
-short int   KX022_Accel_X_RawOUT = 0;
-short int   KX022_Accel_Y_RawOUT = 0;
-short int   KX022_Accel_Z_RawOUT = 0;
-
-int         KX022_Accel_X_LB = 0;
-int         KX022_Accel_X_HB = 0;
-int         KX022_Accel_Y_LB = 0;
-int         KX022_Accel_Y_HB = 0;
-int         KX022_Accel_Z_LB = 0;
-int         KX022_Accel_Z_HB = 0;
-float       KX022_Accel_X_OUT = 0;
-float       KX022_Accel_Y_OUT = 0;
-float       KX022_Accel_Z_OUT = 0;
-
-
+#define DATA_OUT_BASE 0x06
 
 void initSensor(){
     writeTwoBytes(KX022_Accel_CNTL1_1,KX022_Accel_CNTL1_2);
@@ -75,35 +47,19 @@ int getByte (int address)
   Wire.endTransmission();
   Wire.requestFrom(KX022_addr_r , 1);  // Or-ed with "1" for read bit
   if(1 <= Wire.available())    // if two bytes were received
-    {
-  readedValue = Wire.read();
+  {
+    readedValue = Wire.read();
   }
   return readedValue;
 }
 
-float getAccelX(){
-  KX022_Accel_X_LB = getByte(XOUT_L);
-  KX022_Accel_X_HB = getByte(XOUT_H);
-  KX022_Accel_X_RawOUT = (KX022_Accel_X_HB<<8) | (KX022_Accel_X_LB);
-  KX022_Accel_X_OUT = (float)KX022_Accel_X_RawOUT / 16384;
-  return KX022_Accel_X_OUT;
-}
-float getAccelY(){
-  KX022_Accel_Y_LB = getByte(YOUT_L); 
-  KX022_Accel_Y_HB = getByte(YOUT_H);
-  KX022_Accel_Y_RawOUT = (KX022_Accel_Y_HB<<8) | (KX022_Accel_Y_LB);
-  KX022_Accel_Y_OUT = (float)KX022_Accel_Y_RawOUT / 16384;
-  return KX022_Accel_X_OUT;
-}
-float getAccelZ(){
-   KX022_Accel_Z_LB = getByte(ZOUT_L); 
-  KX022_Accel_Z_HB = getByte(ZOUT_H); 
-   KX022_Accel_Z_RawOUT = (KX022_Accel_Z_HB<<8) | (KX022_Accel_Z_LB);
-   KX022_Accel_Z_OUT = (float)KX022_Accel_Z_RawOUT / 16384;
-   return KX022_Accel_Z_OUT;
+float getAccel(int channelNum)
+{
+  return ((int16_t)((getByte(DATA_OUT_BASE+1 + 2*channelNum)<<8) | (getByte(DATA_OUT_BASE + 2*channelNum)))) / 16384.0;  
 }
 
-void setup() {
+void setup() 
+{
   // put your setup code here, to run once:
     Wire.begin(SCL, SDA, TWI_FREQUENCY_100K);
     Serial.begin(9600);
@@ -114,20 +70,12 @@ void setup() {
 
 void loop()
 { 
-delay(500);
-  Serial.write("KX022 (X) = ");
-  Serial.print(getAccelX());
-  Serial.write(" g");
-  Serial.write(0x0A);  //Print Line Feed
-  Serial.write(0x0D);  //Print Carrage Return
-  Serial.write("KX022 (Y) = ");
-  Serial.print(getAccelY());
-  Serial.write(" g");
-  Serial.write(0x0A);  //Print Line Feed
-  Serial.write(0x0D);  //Print Carrage Return
-  Serial.write("KX022 (Z) = ");
-  Serial.print(getAccelZ());
-  Serial.write(" g");
-  Serial.write(0x0A);  //Print Line Feed
-  Serial.write(0x0D);  //Print Carrage Return
+
+  Serial.print(getAccel(0)*10);
+  Serial.print("\t");
+  Serial.print(getAccel(1)*10);
+  Serial.print("\t");
+  Serial.println(getAccel(2)*10);
+  delay(50);
+
 }

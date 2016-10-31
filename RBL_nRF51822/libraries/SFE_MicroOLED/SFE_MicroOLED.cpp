@@ -104,30 +104,6 @@ void MicroOLED::init(int spi_mode, int spi_freq)
 	rstPin = 1;	// Set RST HIGH, bring out of reset
 	wait_ms(5); // wait 5ms
 
-#if GORANS_INIT
- 	command( DISPLAYOFF);
- 	command( SETDISPLAYCLOCKDIV,0x80); 
- 	command( SETMULTIPLEX, 0x1F);
- 	command( SETDISPLAYOFFSET,0x00);
- 	command( SETSTARTLINE);
- 	command( CHARGEPUMP, 0x14);
-  //  command( 0x20,0x0);
- 	command( SEGREMAP);
- 	command( COMSCANDEC);
- 	command( SETCOMPINS, 0x00);
- 	command( SETCONTRAST, 0xCF);
- 	command( SETPRECHARGE, 0xF1);
- 	command( SETVCOMDESELECT, 0x40);
- 	command( DISPLAYALLONRESUME);
-	
-	// the following 2 lines were taken from the espruino code, and they work but may be the wrong values
-	// They may not be needed at all
-	command(SETCOLUMNBOUNDS,0,127);// possibly should be 0,63
-	command(SETPAGEBOUNDS,0,7);// possibly should be 0,3 (only 4 pages used)
-	
- //	command( NORMALDISPLAY);
- 
- #endif
 
 //  Original Espruino commands
 //	uint8_t initCmds[] = { 0xAe,0xD5,0x80,0xA8,31,0xD3,0x0,0x40,0x8D,0x14,0x20,0x00,0xA1,0xC8,0xDA,0x12,0x81,0xCF,0xD9,0xF1,0xDb,0x40,0xA4,0xA6,0xAf};

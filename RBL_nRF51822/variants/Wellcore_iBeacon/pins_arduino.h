@@ -38,9 +38,10 @@
 #define MISO D31
 #define MOSI D29
 
-#define SDA0  D14
-#define SCL0  D16
-
+#define SDA0  D16
+#define SCL0  D8
+#define SDA1  SDA0
+#define SCL1  SCL0
 
 
 #define A0 D19
@@ -50,14 +51,13 @@
 #define A4 D23
 #define A5 D24
 
-#define DEFAULT_RX_PIN 9 
-#define DEFAULT_TX_PIN 8
+#define DEFAULT_RX_PIN 11 
+#define DEFAULT_TX_PIN 9
 
 #define TWI_SDA SDA1
 #define TWI_SCL SCL1
 
-#define BUTTON D3
-#define VIBRATE D7
+
 
 #endif
 

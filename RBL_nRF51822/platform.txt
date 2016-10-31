@@ -73,8 +73,13 @@ recipe.output.tmp_file={build.project_name}_OTA.hex
 recipe.output.save_file={build.project_name}_OTA.{build.variant}.hex
 
 ## Compute size
+#recipe.size.pattern="{compiler.path}{compiler.size.cmd}" -A "{build.path}/{build.project_name}.elf"
+#recipe.size.regex=\.text\s+([0-9]+).*
+
 recipe.size.pattern="{compiler.path}{compiler.size.cmd}" -A "{build.path}/{build.project_name}.elf"
-recipe.size.regex=\.text\s+([0-9]+).*
+recipe.size.regex=^(?:\.text|\.data|\.rodata|\.text.align|\.ARM.exidx)\s+([0-9]+).*
+recipe.size.regex.data=^(?:\.data|\.bss|\.noinit)\s+([0-9]+).*
+
 
 ## Preprocessor
 #preproc.includes.flags=-w -x c++ -M -MG -MP
